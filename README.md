@@ -2,9 +2,7 @@
 
 API REST para administrar el catálogo de productos de una tienda de equipamiento de buceo. Permite leer, crear, actualizar y eliminar productos, con autenticación mediante JWT y datos alojados en la nube con Firestore (Firebase). Incluye además un pequeño panel web con plantillas Pug para iniciar sesión, ver los productos y agregar nuevos.
 
-Trabajo final del curso de Node.js.
-
-**Demo desplegada:** 
+**Demo desplegada:** [https://sunny-reef.vercel.app/login](https://sunny-reef.vercel.app/login)
 
 ## Tecnologías
 
@@ -136,6 +134,12 @@ Categorías disponibles: 1 – Equipamiento Técnico, 2 – Máscaras y Tubos, 3
 
 Todas las respuestas de error tienen el formato `{ "status": "error", "message": "..." }`.
 
+- 400 Bad Request: Datos faltantes o formato inválido en el cuerpo de la petición.
+- 401 Unauthorized: Credenciales inválidas o token JWT ausente.
+- 403 Forbidden: Token JWT inválido o expirado.
+- 404 Not Found: Recurso o ruta no encontrada.
+- 500 Internal Server Error: Error interno del servidor o de conexión con Firestore.
+
 ## Autora
 
-Hecho por **Sol Prinzen** · [github.com/solprinz](https://github.com/solprinz)
+Desarrollado por Sol Prinzen — Proyecto Final de Node.js (Talento Tech 2026)
