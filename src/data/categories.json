@@ -1,0 +1,8 @@
+{
+  "categories": [
+    { "id": 1, "name": "Equipamiento Técnico" },
+    { "id": 2, "name": "Máscaras y Tubos" },
+    { "id": 3, "name": "Indumentaria" },
+    { "id": 4, "name": "Accesorios" }
+  ]
+}

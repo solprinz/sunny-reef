@@ -1,0 +1,244 @@
+doctype html
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Products | Sunny Reef Store 🪸☀️
+    style.
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #0f172a 0%, #0369a1 50%, #06b6d4 100%);
+        min-height: 100vh;
+        padding: 2rem 1rem;
+        color: #1e293b;
+      }
+      .container {
+        max-width: 1050px;
+        margin: 0 auto;
+      }
+      header {
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(16px);
+        padding: 1.5rem 2rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.25);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        border: 2px solid rgba(255, 255, 255, 0.8);
+      }
+      .logo-title h1 {
+        color: #0f172a;
+        font-size: 1.6rem;
+        font-weight: 700;
+      }
+      .logo-title p {
+        color: #64748b;
+        font-size: 0.85rem;
+      }
+      .btn-logout {
+        background: linear-gradient(90deg, #ef4444 0%, #f43f5e 100%);
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.85rem;
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+        transition: transform 0.1s ease;
+      }
+      .btn-logout:hover {
+        transform: translateY(-1px);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.8rem;
+      }
+      .card {
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(12px);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 35px rgba(15, 23, 42, 0.3);
+      }
+      .card-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .card-body {
+        padding: 1.4rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+      .badge-category {
+        align-self: flex-start;
+        background: #e0f2fe;
+        color: #0369a1;
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0.6rem;
+      }
+      .card-title {
+        color: #0f172a;
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+      .card-price {
+        font-size: 1.35rem;
+        color: #0284c7;
+        font-weight: 800;
+        margin-bottom: 0.6rem;
+      }
+      .card-stock {
+        font-size: 0.82rem;
+        color: #64748b;
+        margin-top: auto;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+      .add-form {
+        background: rgba(255, 255, 255, 0.94);
+        padding: 1.5rem 2rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.25);
+        margin-top: 2rem;
+      }
+      .add-form h2 {
+        color: #0f172a;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+      .add-form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 0.8rem;
+        margin-bottom: 1rem;
+      }
+      .add-form input,
+      .add-form select {
+        padding: 0.7rem 0.9rem;
+        border: 2px solid #bae6fd;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        background: #f8fafc;
+      }
+      .add-form button {
+        background: linear-gradient(90deg, #0369a1 0%, #0284c7 50%, #06b6d4 100%);
+        color: white;
+        border: none;
+        padding: 0.7rem 1.4rem;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .form-error {
+        background: #fef2f2;
+        color: #991b1b;
+        border: 1px solid #fecaca;
+        padding: 0.6rem;
+        border-radius: 10px;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+
+  body
+    .container
+      header
+        .logo-title
+          h1 Sunny Reef Store 🪸☀️
+          p Equipamiento Profesional & Accesorios de Buceo
+        a#logout.btn-logout(href="/login") Cerrar sesión
+
+      .grid
+        each product in products
+          .card
+            if product.image
+              img.card-img(src=product.image alt=product.name)
+            .card-body
+              span.badge-category= categoryNames[product.categoryId] || 'Equipamiento Técnico'
+              h3.card-title= product.name
+              p.card-price $#{(product.price || 0).toLocaleString('es-AR')}
+              p.card-stock Stock disponible: #{product.stock} unidades
+
+      form#productForm.add-form(hidden)
+        h2 Agregar producto
+        .add-form-grid
+          input(type="text" name="name" placeholder="Nombre" required)
+          input(type="number" name="price" placeholder="Precio" min="0" required)
+          input(type="number" name="stock" placeholder="Stock" min="0" required)
+          select(name="categoryId" required)
+            option(value="") Categoría
+            each categoryName, categoryId in categoryNames
+              option(value=categoryId)= categoryName
+          input(type="url" name="image" placeholder="URL de la imagen (opcional)")
+        p.form-error#formError(hidden)
+        button(type="submit") Agregar producto
+
+    script.
+      const token = localStorage.getItem("token");
+      const form = document.getElementById("productForm");
+      const formError = document.getElementById("formError");
+
+      // El formulario solo se muestra si hay sesión iniciada
+      if (token) form.hidden = false;
+
+      // Al cerrar sesión se borra el token
+      document.getElementById("logout").addEventListener("click", () => {
+        localStorage.removeItem("token");
+      });
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        formError.hidden = true;
+
+        const data = Object.fromEntries(new FormData(form));
+        if (!data.image) delete data.image;
+
+        const res = await fetch("/api/products/create", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          body: JSON.stringify(data),
+        });
+
+        // Token vencido o inválido: volver al login
+        if (res.status === 401 || res.status === 403) {
+          localStorage.removeItem("token");
+          window.location.href = "/login";
+          return;
+        }
+
+        if (res.ok) {
+          window.location.reload();
+        } else {
+          const result = await res.json();
+          formError.textContent = result.message;
+          formError.hidden = false;
+        }
+      });
