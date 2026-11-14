@@ -44,10 +44,7 @@ app.get("/products", async (req, res) => {
 
 // 4. Ruta raíz de prueba
 app.get("/", (req, res) => {
-  res.json({
-    message: "🤿 Bienvenido a la API REST de Sunny Reef Store 🪸☀️",
-    description: "Sistema de Gestión de Equipamiento de Buceo",
-  });
+  res.redirect("/login");
 });
 
 // 5. Routers de la API REST

@@ -164,6 +164,17 @@ html(lang="es")
         font-size: 0.85rem;
         margin-bottom: 1rem;
       }
+      footer {
+        text-align: center;
+        color: white;
+        font-size: 0.85rem;
+        margin-top: 2.5rem;
+        line-height: 1.7;
+      }
+      footer a {
+        color: #bae6fd;
+        font-weight: 600;
+      }
 
   body
     .container
@@ -197,6 +208,12 @@ html(lang="es")
           input(type="url" name="image" placeholder="URL de la imagen (opcional)")
         p.form-error#formError(hidden)
         button(type="submit") Agregar producto
+
+      footer
+        p © 2026 Sol Prinzen. Todos los derechos reservados.
+        p Trabajo final del curso de Node.js
+        p
+          a(href="https://github.com/solprinz" target="_blank" rel="noopener") Ver más proyectos
 
     script.
       const token = localStorage.getItem("token");
